@@ -26,7 +26,7 @@ function App() {
   // Initialize Lenis smooth scroll after preloader
   useEffect(() => {
     if (!isLoading && showContent) {
-      const lenis = initLenis();
+      initLenis();
 
       return () => {
         cleanupLenis();

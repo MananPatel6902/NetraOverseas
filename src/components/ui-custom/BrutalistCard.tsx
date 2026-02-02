@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -51,7 +51,7 @@ export function BrutalistCard({
         hover: {
           x: -2,
           y: -2,
-          transition: { duration: 0.2, ease: 'easeOut' },
+          transition: { duration: 0.2, ease: 'easeOut' as const },
         },
       }
     : undefined;

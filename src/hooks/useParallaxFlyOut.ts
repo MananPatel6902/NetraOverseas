@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useScroll, useTransform } from 'framer-motion';
 
 interface ParallaxFlyOutOptions {
   direction: 'left' | 'right';

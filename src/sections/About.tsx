@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Shield, Clock, Users, Award } from 'lucide-react';
+import { Shield, Clock, Users } from 'lucide-react';
 import { useRef } from 'react';
 import { useStaggeredReveal } from '@/hooks/useConvergingScroll';
 import { BrutalistCard } from '@/components/ui-custom/BrutalistCard';
@@ -185,7 +185,7 @@ export function About() {
           animate={valuesAnimation.isInView ? 'visible' : 'hidden'}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
-          {values.map((value, index) => (
+          {values.map((value) => (
             <motion.div key={value.title} variants={valuesAnimation.itemVariants}>
               <BrutalistCard className="h-full">
                 <div className="flex flex-col items-start gap-4">

@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { useInView, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { useInView, useScroll, useTransform } from 'framer-motion';
 
 interface ConvergingScrollOptions {
   threshold?: number;
@@ -85,7 +85,7 @@ export function useScrollReveal(options: ConvergingScrollOptions = {}) {
         y: 0,
         transition: {
           duration: 0.8,
-          ease: [0.25, 0.46, 0.45, 0.94],
+          ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
         },
       },
     },
@@ -116,7 +116,7 @@ export function useStaggeredReveal(options: ConvergingScrollOptions = {}) {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number],
       },
     },
   };
