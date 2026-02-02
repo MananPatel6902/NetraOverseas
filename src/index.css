@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brutalist color system - HSL values for cream background and charcoal text */
+    --background: 39 23% 91%;     /* cream #F5F1E8 */
+    --foreground: 0 0% 10%;       /* charcoal #1A1A1A */
+    --card: 39 23% 91%;           /* cream */
+    --card-foreground: 0 0% 10%;  /* charcoal */
+    --popover: 39 23% 91%;        /* cream */
+    --popover-foreground: 0 0% 10%; /* charcoal */
+    --primary: 210 100% 35%;      /* keep for compatibility */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 39 15% 88%;      /* stone #E8E4DB */
+    --secondary-foreground: 0 0% 10%;
+    --muted: 39 15% 88%;          /* stone */
+    --muted-foreground: 0 0% 29%; /* slate #4A4A4A */
+    --accent: 28 96% 44%;         /* amber #D97706 */
+    --accent-foreground: 0 0% 10%; /* charcoal */
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 18%;           /* graphite #2D2D2D */
+    --input: 0 0% 18%;            /* graphite */
+    --ring: 28 96% 44%;           /* amber for focus rings */
+    --radius: 0rem;               /* no rounded corners for brutalist */
+
+    /* Brutalist-specific variables */
+    --split-gap: 4rem;
+    --thick-border: 4px;
+    --asymmetric-offset: 12%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  /* Legacy utilities - keeping for now */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-700 via-blue-600 to-cyan-600;
+  }
+
+  .glass-card {
+    @apply bg-white/80 backdrop-blur-xl border border-slate-200/50 shadow-lg;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(0, 82, 165, 0.2);
+  }
+
+  .glow-amber {
+    box-shadow: 0 0 40px rgba(217, 119, 6, 0.2);
+  }
+
+  /* Brutalist utilities */
+  .text-brutalist {
+    font-weight: 900;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .border-brutalist {
+    border-width: var(--thick-border);
+    border-color: theme('colors.charcoal');
+    border-radius: 0;
+  }
+
+  .split-screen-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--split-gap);
+    min-height: 100vh;
+  }
+
+  @media (max-width: 1024px) {
+    .split-screen-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .brutalist-shadow {
+    box-shadow: 8px 8px 0 theme('colors.charcoal');
+  }
+
+  .brutalist-shadow-amber {
+    box-shadow: 8px 8px 0 theme('colors.amber');
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Preloader animations */
+@keyframes containerDrop {
+  0% {
+    transform: translateY(-200px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes shipSail {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(150vw);
+  }
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
