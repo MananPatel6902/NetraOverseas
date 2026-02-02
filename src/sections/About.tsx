@@ -48,27 +48,28 @@ export function About() {
   });
 
   // Left pane: slides in from left, slides out to left
+  // Content centered from 0.2 to 0.8 scroll progress
   const leftX = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [-150, -50, 0, -50, -150]
+    [0, 0.1, 0.2, 0.8, 0.9, 1],
+    [-60, -20, 0, 0, -20, -60]
   );
   const leftOpacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.3, 0.7, 0.85, 1],
-    [0, 0.5, 1, 1, 0.5, 0]
+    [0, 0.08, 0.15, 0.85, 0.92, 1],
+    [0, 0.7, 1, 1, 0.7, 0]
   );
 
   // Right pane: slides in from right, slides out to right
   const rightX = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [150, 50, 0, 50, 150]
+    [0, 0.1, 0.2, 0.8, 0.9, 1],
+    [60, 20, 0, 0, 20, 60]
   );
   const rightOpacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.3, 0.7, 0.85, 1],
-    [0, 0.5, 1, 1, 0.5, 0]
+    [0, 0.08, 0.15, 0.85, 0.92, 1],
+    [0, 0.7, 1, 1, 0.7, 0]
   );
 
   return (

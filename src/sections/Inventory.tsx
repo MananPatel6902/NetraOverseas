@@ -222,20 +222,20 @@ export function Inventory() {
   });
 
   // Slide animations for left and right content
-  // Content should be centered (x=0) when user arrives at section (around 0.2-0.7 scroll progress)
+  // Content centered from 0.2 to 0.8 scroll progress
   const leftX = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.25, 0.75, 0.85, 1],
-    [-80, -20, 0, 0, -20, -80]
+    [0, 0.1, 0.2, 0.8, 0.9, 1],
+    [-60, -20, 0, 0, -20, -60]
   );
   const rightX = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.25, 0.75, 0.85, 1],
-    [80, 20, 0, 0, 20, 80]
+    [0, 0.1, 0.2, 0.8, 0.9, 1],
+    [60, 20, 0, 0, 20, 60]
   );
   const contentOpacity = useTransform(
     scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
+    [0, 0.08, 0.15, 0.85, 0.92, 1],
     [0, 0.7, 1, 1, 0.7, 0]
   );
 
