@@ -222,20 +222,21 @@ export function Inventory() {
   });
 
   // Slide animations for left and right content
+  // Content should be centered (x=0) when user arrives at section (around 0.2-0.7 scroll progress)
   const leftX = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [-120, -40, 0, -40, -120]
+    [0, 0.15, 0.25, 0.75, 0.85, 1],
+    [-80, -20, 0, 0, -20, -80]
   );
   const rightX = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [120, 40, 0, 40, 120]
+    [0, 0.15, 0.25, 0.75, 0.85, 1],
+    [80, 20, 0, 0, 20, 80]
   );
   const contentOpacity = useTransform(
     scrollYProgress,
-    [0, 0.15, 0.3, 0.7, 0.85, 1],
-    [0, 0.5, 1, 1, 0.5, 0]
+    [0, 0.1, 0.2, 0.8, 0.9, 1],
+    [0, 0.7, 1, 1, 0.7, 0]
   );
 
   const activeCategoryData = categories.find((c) => c.id === activeCategory);
