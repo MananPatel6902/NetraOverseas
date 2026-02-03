@@ -20,14 +20,14 @@ export function ShipPreloader({ onComplete }: ShipPreloaderProps) {
   useEffect(() => {
     const dropInterval = setInterval(() => {
       setDroppedContainers((prev) => {
-        if (prev >= 5) {
+        if (prev >=4) {
           clearInterval(dropInterval);
-          setTimeout(() => setPhase('sailing'), 600);
+          setTimeout(() => setPhase('sailing'), 50);
           return prev;
         }
         return prev + 1;
       });
-    }, 350);
+    }, 50);
 
     return () => clearInterval(dropInterval);
   }, []);
@@ -299,7 +299,7 @@ export function ShipPreloader({ onComplete }: ShipPreloaderProps) {
                 fontFamily="Inter, sans-serif"
                 letterSpacing="1"
               >
-                MUMBAI
+                INDIA
               </text>
 
               {/* Deck markings */}
@@ -350,7 +350,7 @@ export function ShipPreloader({ onComplete }: ShipPreloaderProps) {
             transition={{ duration: 0.5 }}
           >
             <p className="text-slate-600 text-sm tracking-[0.25em] uppercase font-semibold">
-              Loading NetraOverseas
+              Loading Netra Overseas
             </p>
             <div className="mt-4 flex justify-center gap-2">
               {[...Array(3)].map((_, i) => (

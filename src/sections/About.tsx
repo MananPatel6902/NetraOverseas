@@ -82,8 +82,8 @@ export function About() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         {/* Large charcoal line */}
         <motion.div
-          style={{ x: leftX, opacity: leftOpacity }}
-          className="absolute top-1/3 left-1/4 w-2 h-96 bg-charcoal"
+          style={{ x: leftX, opacity: 0.2 }}
+          className="absolute top-1/3 left-2/8 w-2 h-96 bg-charcoal"
           aria-hidden="true"
         />
 

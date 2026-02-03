@@ -48,7 +48,7 @@ export function Hero() {
           loop
           playsInline
           className="w-full h-full object-cover"
-          poster="/images/cargo-ship-poster.jpg"
+          poster="../../images/cargo-ship-poster.jpg"
         >
           <source src="/videos/cargo-ship.mp4" type="video/mp4" />
           <source src="/videos/cargo-ship.webm" type="video/webm" />
@@ -89,65 +89,67 @@ export function Hero() {
 
       {/* Split-Screen Content */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        
         <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-16 items-center">
-          {/* LEFT PANE - Text Content - Slides in from left, out to left */}
-          <motion.div
-            style={{
-              x: leftX,
-              opacity: leftOpacity,
-            }}
-            initial={{ x: -100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-            className="space-y-8"
-          >
-            {/* Company Name - Brutalist Typography */}
-            <h1 className="text-brutalist drop-shadow-lg">
-              <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-white">
-                NETRA
-              </span>
-              <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mt-2 text-white">
-                OVERSEAS
-              </span>
-            </h1>
-
-            {/* Tagline - Monospace */}
-            <p
-              className="text-xl sm:text-2xl text-amber font-semibold uppercase tracking-wide drop-shadow-md"
-              style={{ fontFamily: 'monospace' }}
+          <div className='flex square-full square-box flex-col justify-center bg-white/20 backdrop-blur-sm  p-8'> 
+            {/* LEFT PANE - Text Content - Slides in from left, out to left */}
+            <motion.div
+              style={{
+                x: leftX,
+                opacity: leftOpacity,
+              }}
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+              className="space-y-8"
             >
-              Premium Global Trade Solutions
-            </p>
-
-            {/* Body Text */}
-            <p className="text-lg sm:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-sm">
-              Connecting businesses worldwide with premium quality products. From spices to
-              grains, we deliver excellence to 45+ countries.
-            </p>
-
-            {/* CTA Button - Brutalist Style */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <button
-                onClick={() => handleScrollTo('#inventory')}
-                className="group relative px-8 py-4 bg-amber border-4 border-charcoal text-charcoal font-bold text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
-                style={{ borderRadius: 0 }}
-              >
-                <span className="flex items-center justify-center gap-2">
-                  Explore Products
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              {/* Company Name - Brutalist Typography */}
+              <h1 className="text-brutalist drop-shadow-lg">
+                <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-amber font-black leading-none">
+                  NETRA
                 </span>
-              </button>
+                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mt-2 text-charcoal">
+                  OVERSEAS
+                </span>
+              </h1>
 
-              <button
-                onClick={() => handleScrollTo('#contact')}
-                className="px-8 py-4 bg-white/90 backdrop-blur-sm border-4 border-charcoal text-charcoal font-bold text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
-                style={{ borderRadius: 0 }}
+              {/* Tagline - Monospace */}
+              <p
+                className="text-xl sm:text-2xl text-white font-semibold uppercase tracking-wide drop-shadow-md"
+                style={{ fontFamily: 'monospace' }}
               >
-                Contact Us
-              </button>
-            </div>
-          </motion.div>
+                Global Trade Solutions
+              </p>
 
+              {/* Body Text */}
+              <p className="text-lg sm:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-sm">
+                Connecting businesses worldwide with premium quality products. From spices to
+                grains, we deliver excellence to 45+ countries.
+              </p>
+
+              {/* CTA Button - Brutalist Style */}
+              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <button
+                  onClick={() => handleScrollTo('#inventory')}
+                  className="group relative px-8 py-4 bg-amber border-4 border-charcoal text-charcoal font-bold text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
+                  style={{ borderRadius: 0 }}
+                >
+                  <span className="flex items-center justify-center gap-2">
+                    Explore Products
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                </button>
+
+                <button
+                  onClick={() => handleScrollTo('#contact')}
+                  className="px-8 py-4 bg-white/90 backdrop-blur-sm border-4 border-charcoal text-charcoal font-bold text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
+                  style={{ borderRadius: 0 }}
+                >
+                  Contact Us
+                </button>
+              </div>
+            </motion.div>
+          </div>
           {/* RIGHT PANE - Stats Grid - Slides in from right, out to right */}
           <motion.div
             style={{
