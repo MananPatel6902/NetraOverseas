@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { useRef } from 'react';
 import { BrutalistStatCard } from '@/components/ui-custom/BrutalistCard';
+import { LiquidGlassText } from '@/components/ui-custom/LiquidGlassText';
 import { scrollTo } from '@/lib/lenis';
 
 const stats = [
@@ -87,102 +88,109 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Split-Screen Content */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        
-        <div className="grid grid-cols-1 lg:grid-cols-[1.5fr_1fr] gap-16 items-center">
-          <div className='flex square-full square-box flex-col justify-center bg-white/20 backdrop-blur-sm  p-8'> 
-            {/* LEFT PANE - Text Content - Slides in from left, out to left */}
-            <motion.div
-              style={{
-                x: leftX,
-                opacity: leftOpacity,
-              }}
-              initial={{ x: -100, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-              className="space-y-8"
-            >
-              {/* Company Name - Brutalist Typography */}
-              <h1 className="text-brutalist drop-shadow-lg">
-                <span className="block text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-amber font-black leading-none">
-                  NETRA
-                </span>
-                <span className="block text-5xl sm:text-6xl lg:text-7xl xl:text-8xl mt-2 text-charcoal">
-                  OVERSEAS
-                </span>
-              </h1>
+      {/* Main Content - Absolute positioning for precise placement */}
+      <div className="relative z-10 w-full h-screen px-4 sm:px-6 lg:px-8">
 
-              {/* Tagline - Monospace */}
-              <p
-                className="text-xl sm:text-2xl text-white font-semibold uppercase tracking-wide drop-shadow-md"
-                style={{ fontFamily: 'monospace' }}
+        {/* Company Name - Positioned on the upper edge of the boat */}
+        <motion.div
+          style={{
+            opacity: leftOpacity,
+          }}
+          initial={{ y: -30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+          className="absolute top-[10%] sm:top-[12%] md:top-[14%] lg:top-[13%] inset-x-0 flex justify-center px-4"
+        >
+          <LiquidGlassText text="NETRA" subtitle="FLY-OVERSEAS" />
+        </motion.div>
+
+        {/* BOTTOM SECTION - Below the boat */}
+        <div className="absolute bottom-4 sm:bottom-[6%] md:bottom-[8%] lg:bottom-[10%] left-0 right-0 px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-4 sm:gap-6 lg:gap-16 items-end">
+              {/* LEFT - Tagline and Description */}
+              <motion.div
+                style={{
+                  x: leftX,
+                  opacity: leftOpacity,
+                }}
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+                className="space-y-2 sm:space-y-3"
               >
-                Global Trade Solutions
-              </p>
-
-              {/* Body Text */}
-              <p className="text-lg sm:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-sm">
-                Connecting businesses worldwide with premium quality products. From spices to
-                grains, we deliver excellence to 45+ countries.
-              </p>
-
-              {/* CTA Button - Brutalist Style */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <button
-                  onClick={() => handleScrollTo('#inventory')}
-                  className="group relative px-8 py-4 bg-amber border-4 border-charcoal text-charcoal font-bold text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
-                  style={{ borderRadius: 0 }}
+                {/* Tagline - Monospace */}
+                <p
+                  className="text-base sm:text-xl md:text-2xl lg:text-3xl text-white font-semibold uppercase tracking-widest drop-shadow-lg"
+                  style={{ fontFamily: 'monospace' }}
                 >
-                  <span className="flex items-center justify-center gap-2">
-                    Explore Products
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </button>
+                  Global Trade Solutions
+                </p>
 
-                <button
-                  onClick={() => handleScrollTo('#contact')}
-                  className="px-8 py-4 bg-white/90 backdrop-blur-sm border-4 border-charcoal text-charcoal font-bold text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
-                  style={{ borderRadius: 0 }}
-                >
-                  Contact Us
-                </button>
-              </div>
-            </motion.div>
-          </div>
-          {/* RIGHT PANE - Stats Grid - Slides in from right, out to right */}
-          <motion.div
-            style={{
-              x: rightX,
-              opacity: rightOpacity,
-            }}
-            initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
-          >
-            <div className="grid grid-cols-2 gap-6">
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.8 + index * 0.1, duration: 0.4 }}
-                >
-                  <BrutalistStatCard
-                    value={stat.value}
-                    label={stat.label}
-                    variant={index % 2 === 0 ? 'default' : 'accent'}
-                  />
-                </motion.div>
-              ))}
+                {/* Body Text */}
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90 max-w-xl leading-relaxed drop-shadow-md">
+                  Connecting businesses worldwide with premium quality products. From spices to
+                  grains, we deliver excellence to 45+ countries.
+                </p>
+
+                {/* CTA Buttons */}
+                <div className="flex flex-row gap-2 sm:gap-3 pt-1 sm:pt-2">
+                  <button
+                    onClick={() => handleScrollTo('#inventory')}
+                    className="group relative px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-amber border-3 sm:border-4 border-charcoal text-charcoal font-bold text-sm sm:text-base md:text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
+                    style={{ borderRadius: 0 }}
+                  >
+                    <span className="flex items-center justify-center gap-1.5 sm:gap-2">
+                      Explore Products
+                      <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </button>
+
+                  <button
+                    onClick={() => handleScrollTo('#contact')}
+                    className="px-4 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 bg-white/90 backdrop-blur-sm border-3 sm:border-4 border-charcoal text-charcoal font-bold text-sm sm:text-base md:text-lg uppercase tracking-wide transition-all duration-200 hover:-translate-x-1 hover:-translate-y-1 shadow-lg"
+                    style={{ borderRadius: 0 }}
+                  >
+                    Contact Us
+                  </button>
+                </div>
+              </motion.div>
+
+              {/* RIGHT - Stats Grid */}
+              <motion.div
+                style={{
+                  x: rightX,
+                  opacity: rightOpacity,
+                }}
+                initial={{ x: 100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}
+              >
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-5">
+                  {stats.map((stat, index) => (
+                    <motion.div
+                      key={stat.label}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.9 + index * 0.1, duration: 0.4 }}
+                    >
+                      <BrutalistStatCard
+                        value={stat.value}
+                        label={stat.label}
+                        variant={index % 2 === 0 ? 'default' : 'accent'}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - hidden on mobile to save space */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10"
+        className="absolute bottom-2 sm:bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:block"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.5, duration: 0.5 }}

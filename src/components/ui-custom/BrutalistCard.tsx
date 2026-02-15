@@ -62,7 +62,7 @@ export function BrutalistCard({
       whileHover="hover"
       variants={hoverVariants}
       className={cn(
-        'p-6 border-4',
+        'p-4 sm:p-6 border-3 sm:border-4',
         'relative',
         variants[variant],
         shadow && shadowStyles,
@@ -93,15 +93,15 @@ export function BrutalistStatCard({
   className?: string;
 }) {
   return (
-    <BrutalistCard variant={variant} hover={true} className={cn('text-center', className)}>
-      {icon && <div className="flex justify-center mb-3">{icon}</div>}
+    <BrutalistCard variant={variant} hover={true} className={cn('text-center p-3 sm:p-4 md:p-6', className)}>
+      {icon && <div className="flex justify-center mb-2 sm:mb-3">{icon}</div>}
       <p
-        className="text-4xl sm:text-5xl font-black leading-none mb-2"
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black leading-none mb-1 sm:mb-2"
         style={{ fontFamily: 'monospace' }}
       >
         {value}
       </p>
-      <p className="text-xs uppercase tracking-wider font-semibold opacity-70" style={{ fontFamily: 'monospace' }}>
+      <p className="text-[10px] sm:text-xs uppercase tracking-wider font-semibold opacity-70" style={{ fontFamily: 'monospace' }}>
         {label}
       </p>
     </BrutalistCard>

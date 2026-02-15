@@ -29,22 +29,22 @@ interface Owner {
 const owners: Owner[] = [
   {
     id: 'owner-1',
-    name: 'Rajesh Kumar',
+    name: 'Ketan Patel',
     role: 'Founder & CEO',
     image: '/images/owner-1.jpg',
-    bio: 'With over 25 years of experience in international trade, Rajesh founded NetraOverseas with a vision to connect Indian producers with global markets. His expertise in supply chain management and deep understanding of agricultural commodities has been instrumental in the company\'s growth.',
+    bio: 'With over 25 years of experience in international trade, Ketan founded NetraFlyOverseas with a vision to connect Indian producers with global markets. His expertise in supply chain management and deep understanding of agricultural commodities has been instrumental in the company\'s growth.',
     phone: '+91 98765 43210',
-    email: 'rajesh@netraoverseas.com',
+    email: 'ketan@netraflyoverseas.com',
     linkedin: '#',
   },
   {
     id: 'owner-2',
-    name: 'Priya Sharma',
+    name: 'Chintu Patel',
     role: 'Co-Founder & COO',
     image: '/images/owner-2.jpg',
-    bio: 'Priya brings 20 years of operations expertise to NetraOverseas. Her focus on quality assurance and process optimization has helped establish the company as a trusted name in premium exports. She oversees all operational aspects and ensures timely delivery worldwide.',
+    bio: 'Chintu brings 20 years of operations expertise to NetraFlyOverseas. Her focus on quality assurance and process optimization has helped establish the company as a trusted name in premium exports. She oversees all operational aspects and ensures timely delivery worldwide.',
     phone: '+91 98765 43211',
-    email: 'priya@netraoverseas.com',
+    email: 'chintu@netraflyoverseas.com',
     linkedin: '#',
   },
 ];
@@ -76,34 +76,8 @@ const teamMembers: TeamMember[] = [
     bio: 'Based in Dubai, Mohammed manages our Middle East operations and client relationships across the GCC region.',
     linkedin: '#',
     email: 'mohammed@netraoverseas.com',
-  },
-  {
-    id: 'team-4',
-    name: 'Kavita Reddy',
-    role: 'Supply Chain Director',
-    image: '/images/team-member-4.jpg',
-    bio: 'Kavita optimizes our supply chain operations, ensuring efficient sourcing and timely deliveries to 45+ countries.',
-    linkedin: '#',
-    email: 'kavita@netraoverseas.com',
-  },
-  {
-    id: 'team-5',
-    name: 'Vikram Singh',
-    role: 'Business Development Manager',
-    image: '/images/team-member-5.jpg',
-    bio: 'Vikram drives new business partnerships and explores emerging market opportunities across Asia and Europe.',
-    linkedin: '#',
-    email: 'vikram@netraoverseas.com',
-  },
-  {
-    id: 'team-6',
-    name: 'Anita Joshi',
-    role: 'Customer Relations Head',
-    image: '/images/team-member-6.jpg',
-    bio: 'Anita leads our customer support team, ensuring exceptional service and building long-term client relationships.',
-    linkedin: '#',
-    email: 'anita@netraoverseas.com',
-  },
+  }
+  
 ];
 
 export function Team() {

@@ -7,6 +7,15 @@
     <title>Nethra Imports and Exports</title>
   </head>
   <body>
+    <!-- Hidden form for Netlify bot detection (SPA) -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <input type="text" name="inquiryType" />
+      <textarea name="message"></textarea>
+    </form>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

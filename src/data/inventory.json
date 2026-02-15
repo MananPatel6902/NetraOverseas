@@ -1,0 +1,182 @@
+[
+  {
+    "id": "spices",
+    "name": "Spices",
+    "icon": "Leaf",
+    "description": "Premium quality spices sourced from the finest regions",
+    "products": [
+      {
+        "id": "turmeric",
+        "name": "Turmeric Powder",
+        "description": "High-curcumin turmeric from Erode, known for its vibrant color and medicinal properties.",
+        "origin": "India",
+        "image": "/images/inventory/inventory/turmeric.jpg"
+      },
+      {
+        "id": "cumin",
+        "name": "Cumin Seeds",
+        "description": "Aromatic cumin seeds from Gujarat, perfect for culinary and medicinal use.",
+        "origin": "India",
+        "image": "/images/inventory/cumin.jpg"
+      },
+      {
+        "id": "cardamom",
+        "name": "Green Cardamom",
+        "description": "Premium grade cardamom from Kerala, the queen of spices.",
+        "origin": "India",
+        "image": "/images/inventory/cardamom.jpg"
+      },
+      {
+        "id": "pepper",
+        "name": "Black Pepper",
+        "description": "Bold and aromatic black peppercorns from the Western Ghats.",
+        "origin": "India",
+        "image": "/images/inventory/pepper.jpg"
+      }
+    ]
+  },
+  {
+    "id": "flours",
+    "name": "Flours",
+    "icon": "Wheat",
+    "description": "Nutritious flours milled to perfection",
+    "products": [
+      {
+        "id": "chickpea",
+        "name": "Channe ka Atta",
+        "description": "Protein-rich chickpea flour, gluten-free and versatile.",
+        "origin": "India",
+        "image": "/images/inventory/chickpea-flour.jpg"
+      },
+      {
+        "id": "wheat",
+        "name": "Ghehu ka Atta",
+        "description": "Stone-ground whole wheat flour for authentic taste.",
+        "origin": "India",
+        "image": "/images/inventory/wheat-flour.jpg"
+      },
+      {
+        "id": "rice",
+        "name": "Rice Flour",
+        "description": "Fine rice flour ideal for South Indian delicacies.",
+        "origin": "India",
+        "image": "/images/inventory/rice-flour.jpg"
+      },
+      {
+        "id": "millet",
+        "name": "Millet Flour",
+        "description": "Nutrient-dense millet flour for healthy alternatives.",
+        "origin": "India",
+        "image": "/images/inventory/millet-flour.jpg"
+      }
+    ]
+  },
+  {
+    "id": "grains",
+    "name": "Grains & Pulses",
+    "icon": "Package",
+    "description": "Wholesome grains and pulses for global markets",
+    "products": [
+      {
+        "id": "basmati",
+        "name": "Basmati Rice",
+        "description": "Aromatic long-grain basmati rice from Punjab.",
+        "origin": "India",
+        "image": "/images/inventory/basmati.jpg"
+      },
+      {
+        "id": "moong",
+        "name": "Moong Dal",
+        "description": "Split yellow mung beans, easy to digest and nutritious.",
+        "origin": "India",
+        "image": "/images/inventory/moong-dal.jpg"
+      },
+      {
+        "id": "toor",
+        "name": "Toor Dal",
+        "description": "Premium pigeon peas, staple of Indian cuisine.",
+        "origin": "India",
+        "image": "/images/inventory/toor-dal.jpg"
+      },
+      {
+        "id": "quinoa",
+        "name": "Quinoa",
+        "description": "Protein-rich superfood grain for health-conscious consumers.",
+        "origin": "Peru/India",
+        "image": "/images/inventory/quinoa.jpg"
+      }
+    ]
+  },
+  {
+    "id": "oils",
+    "name": "Oils & Ghee",
+    "icon": "Droplets",
+    "description": "Pure and natural oils for cooking and wellness",
+    "products": [
+      {
+        "id": "mustard",
+        "name": "Mustard Oil",
+        "description": "Cold-pressed mustard oil with authentic pungency.",
+        "origin": "India",
+        "image": "/images/inventory/mustard-oil.jpg"
+      },
+      {
+        "id": "coconut",
+        "name": "Coconut Oil",
+        "description": "Virgin coconut oil from Kerala, multi-purpose goodness.",
+        "origin": "India",
+        "image": "/images/inventory/coconut-oil.jpg"
+      },
+      {
+        "id": "ghee",
+        "name": "Pure Ghee",
+        "description": "Traditional clarified butter with rich aroma.",
+        "origin": "India",
+        "image": "/images/inventory/ghee.jpg"
+      },
+      {
+        "id": "sesame",
+        "name": "Sesame Oil",
+        "description": "Cold-pressed sesame oil for cooking and massage.",
+        "origin": "India",
+        "image": "/images/inventory/sesame-oil.jpg"
+      }
+    ]
+  },
+  {
+    "id": "beverages",
+    "name": "Beverages",
+    "icon": "Coffee",
+    "description": "Refreshing beverages and ingredients",
+    "products": [
+      {
+        "id": "tea",
+        "name": "Assam Tea",
+        "description": "Bold and malty black tea from Assam gardens.",
+        "origin": "India",
+        "image": "/images/inventory/tea.jpg"
+      },
+      {
+        "id": "coffee",
+        "name": "Arabica Coffee",
+        "description": "Single-origin Arabica from Chikmagalur hills.",
+        "origin": "India",
+        "image": "/images/inventory/coffee.jpg"
+      },
+      {
+        "id": "cashew",
+        "name": "Cashew Nuts",
+        "description": "Premium W320 grade cashews from Goa.",
+        "origin": "India",
+        "image": "/images/inventory/cashew.jpg"
+      },
+      {
+        "id": "raisins",
+        "name": "Raisins",
+        "description": "Sweet and plump raisins from Nashik vineyards.",
+        "origin": "India",
+        "image": "/images/inventory/raisins.jpg"
+      }
+    ]
+  }
+]

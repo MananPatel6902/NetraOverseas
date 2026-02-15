@@ -76,27 +76,41 @@ export function Contact() {
     setFormData((prev) => ({ ...prev, inquiryType: value }));
   };
 
+  const [errorMsg, setErrorMsg] = useState('');
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg('');
 
-    console.log('Form submitted:', formData);
-
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSuccess(true);
-
-    setTimeout(() => {
-      setIsSuccess(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        inquiryType: '',
-        message: '',
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          ...formData,
+        }).toString(),
       });
-    }, 3000);
+
+      if (!response.ok) throw new Error('Submission failed');
+
+      setIsSuccess(true);
+      setTimeout(() => {
+        setIsSuccess(false);
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          inquiryType: '',
+          message: '',
+        });
+      }, 3000);
+    } catch {
+      setErrorMsg('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -201,11 +215,25 @@ export function Contact() {
                 ) : (
                   <motion.form
                     key="form"
+                    name="contact"
                     onSubmit={handleSubmit}
                     className="space-y-5"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                   >
+                    <input type="hidden" name="form-name" value="contact" />
+                    <p className="hidden">
+                      <label>
+                        Don't fill this out: <input name="bot-field" />
+                      </label>
+                    </p>
+
+                    {errorMsg && (
+                      <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-600 text-sm">
+                        {errorMsg}
+                      </div>
+                    )}
+
                     {/* Name */}
                     <div className="space-y-2">
                       <Label htmlFor="name" className="text-slate-700">
