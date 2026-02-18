@@ -7,7 +7,9 @@ import {
   Droplets,
   ArrowRight,
   Package,
-  CheckCircle2
+  CheckCircle2,
+  Stethoscope,
+  ToyBrick
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import inventoryData from '@/data/inventory.json';
@@ -19,6 +21,8 @@ const iconMap: Record<string, React.ElementType> = {
   Coffee,
   Droplets,
   Package,
+  Stethoscope,
+  ToyBrick,
 };
 
 interface Product {
@@ -273,14 +277,14 @@ export function Inventory() {
             </h3>
             <p className="text-slate-500 mb-6">
               We offer competitive pricing and customized solutions for wholesale
-              buyers. Contact our sales team for special rates.
+              buyers. Get in touch for special rates and customized solutions.
             </p>
             <Button
               size="lg"
               onClick={scrollToContact}
               className="bg-gradient-to-r from-blue-700 to-blue-600 hover:from-blue-600 hover:to-blue-500 text-white shadow-lg shadow-blue-600/20"
             >
-              Contact Sales Team
+              Contact Us
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>

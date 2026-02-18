@@ -32,53 +32,14 @@ const owners: Owner[] = [
     name: 'Ketan Patel',
     role: 'Founder & CEO',
     image: '/images/owner-1.jpg',
-    bio: 'With over 25 years of experience in international trade, Ketan founded NetraFlyOverseas with a vision to connect Indian producers with global markets. His expertise in supply chain management and deep understanding of agricultural commodities has been instrumental in the company\'s growth.',
-    phone: '+91 98765 43210',
+    bio: 'Ketan is the visionary founder behind NetraFlyOverseas, single-handedly building the company from the ground up. With extensive experience in international trade, he oversees every aspect of operations - from sourcing and quality assurance to logistics and client relationships. His hands-on leadership and deep industry knowledge drive the company\'s continued growth across global markets.',
+    phone: '+91 99987 28153',
     email: 'ketan@netraflyoverseas.com',
-    linkedin: '#',
-  },
-  {
-    id: 'owner-2',
-    name: 'Chintu Patel',
-    role: 'Co-Founder & COO',
-    image: '/images/owner-2.jpg',
-    bio: 'Chintu brings 20 years of operations expertise to NetraFlyOverseas. Her focus on quality assurance and process optimization has helped establish the company as a trusted name in premium exports. She oversees all operational aspects and ensures timely delivery worldwide.',
-    phone: '+91 98765 43211',
-    email: 'chintu@netraflyoverseas.com',
     linkedin: '#',
   },
 ];
 
-const teamMembers: TeamMember[] = [
-  {
-    id: 'team-1',
-    name: 'Amit Patel',
-    role: 'Head of Exports',
-    image: '/images/team-member-1.jpg',
-    bio: 'Amit leads our export operations with 15 years of experience in international logistics and customs clearance.',
-    linkedin: '#',
-    email: 'amit@netraoverseas.com',
-  },
-  {
-    id: 'team-2',
-    name: 'Sneha Desai',
-    role: 'Quality Assurance Manager',
-    image: '/images/team-member-2.jpg',
-    bio: 'Sneha ensures all products meet international quality standards with her decade of experience in food safety.',
-    linkedin: '#',
-    email: 'sneha@netraoverseas.com',
-  },
-  {
-    id: 'team-3',
-    name: 'Mohammed Ali',
-    role: 'Regional Manager - Middle East',
-    image: '/images/team-member-3.jpg',
-    bio: 'Based in Dubai, Mohammed manages our Middle East operations and client relationships across the GCC region.',
-    linkedin: '#',
-    email: 'mohammed@netraoverseas.com',
-  }
-  
-];
+const teamMembers: TeamMember[] = [];
 
 export function Team() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -122,7 +83,7 @@ export function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            Meet Our Team
+            Meet Our Founder
           </motion.p>
           <motion.h1
             className="text-4xl sm:text-5xl lg:text-6xl font-black text-charcoal mb-6"
@@ -130,7 +91,7 @@ export function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            THE PEOPLE BEHIND
+            THE PERSON BEHIND
             <br />
             <span className="text-amber">NETRA OVERSEAS</span>
           </motion.h1>
@@ -140,7 +101,7 @@ export function Team() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            A dedicated team of professionals committed to delivering excellence
+            A one-man force committed to delivering excellence
             in global trade and building lasting partnerships worldwide.
           </motion.p>
         </div>
@@ -163,11 +124,11 @@ export function Team() {
               Leadership
             </p>
             <h2 className="text-3xl sm:text-4xl font-black text-charcoal">
-              OUR FOUNDERS
+              OUR FOUNDER
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="max-w-2xl mx-auto">
             {owners.map((owner, index) => (
               <motion.div
                 key={owner.id}
@@ -240,109 +201,84 @@ export function Team() {
         </div>
       </section>
 
-      {/* Team Members Section */}
-      <section className="py-20 bg-cream">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <p
-              className="text-amber text-sm font-bold uppercase tracking-wider mb-4"
-              style={{ fontFamily: 'monospace' }}
+      {/* Team Members Section - only shown if team members exist */}
+      {teamMembers.length > 0 && (
+        <section className="py-20 bg-cream">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              className="text-center mb-16"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              Our Experts
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-black text-charcoal">
-              KEY TEAM MEMBERS
-            </h2>
-          </motion.div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <motion.div
-                key={member.id}
-                className="bg-white border-4 border-charcoal p-6 shadow-[6px_6px_0_#D97706] hover:shadow-[8px_8px_0_#D97706] transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+              <p
+                className="text-amber text-sm font-bold uppercase tracking-wider mb-4"
+                style={{ fontFamily: 'monospace' }}
               >
-                {/* Image */}
-                <div className="w-full h-48 border-4 border-charcoal mb-6 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
-                  <span className="text-5xl text-charcoal/20 font-black">
-                    {member.name.charAt(0)}
-                  </span>
-                </div>
+                Our Experts
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-black text-charcoal">
+                KEY TEAM MEMBERS
+              </h2>
+            </motion.div>
 
-                {/* Info */}
-                <h3 className="text-xl font-black text-charcoal mb-1">
-                  {member.name}
-                </h3>
-                <p
-                  className="text-amber font-bold uppercase tracking-wide text-xs mb-3"
-                  style={{ fontFamily: 'monospace' }}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {teamMembers.map((member, index) => (
+                <motion.div
+                  key={member.id}
+                  className="bg-white border-4 border-charcoal p-6 shadow-[6px_6px_0_#D97706] hover:shadow-[8px_8px_0_#D97706] transition-all duration-300"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  {member.role}
-                </p>
-                <p className="text-charcoal/70 text-sm mb-4 leading-relaxed">
-                  {member.bio}
-                </p>
+                  {/* Image */}
+                  <div className="w-full h-48 border-4 border-charcoal mb-6 bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center">
+                    <span className="text-5xl text-charcoal/20 font-black">
+                      {member.name.charAt(0)}
+                    </span>
+                  </div>
 
-                {/* Social Links */}
-                <div className="flex gap-3">
-                  {member.email && (
-                    <a
-                      href={`mailto:${member.email}`}
-                      className="w-10 h-10 border-2 border-charcoal flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-white transition-colors"
-                    >
-                      <Mail className="w-4 h-4" />
-                    </a>
-                  )}
-                  {member.linkedin && (
-                    <a
-                      href={member.linkedin}
-                      className="w-10 h-10 border-2 border-charcoal flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-white transition-colors"
-                    >
-                      <Linkedin className="w-4 h-4" />
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                  {/* Info */}
+                  <h3 className="text-xl font-black text-charcoal mb-1">
+                    {member.name}
+                  </h3>
+                  <p
+                    className="text-amber font-bold uppercase tracking-wide text-xs mb-3"
+                    style={{ fontFamily: 'monospace' }}
+                  >
+                    {member.role}
+                  </p>
+                  <p className="text-charcoal/70 text-sm mb-4 leading-relaxed">
+                    {member.bio}
+                  </p>
+
+                  {/* Social Links */}
+                  <div className="flex gap-3">
+                    {member.email && (
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="w-10 h-10 border-2 border-charcoal flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-white transition-colors"
+                      >
+                        <Mail className="w-4 h-4" />
+                      </a>
+                    )}
+                    {member.linkedin && (
+                      <a
+                        href={member.linkedin}
+                        className="w-10 h-10 border-2 border-charcoal flex items-center justify-center text-charcoal hover:bg-charcoal hover:text-white transition-colors"
+                      >
+                        <Linkedin className="w-4 h-4" />
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      {/* Join Us CTA */}
-      <section className="py-20 bg-charcoal">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl sm:text-4xl font-black text-white mb-6">
-              JOIN OUR TEAM
-            </h2>
-            <p className="text-white/70 text-lg mb-8 max-w-2xl mx-auto">
-              We're always looking for talented individuals who share our passion
-              for excellence in global trade. If you're ready to make an impact,
-              we'd love to hear from you.
-            </p>
-            <a
-              href="mailto:careers@netraoverseas.com"
-              className="inline-block px-8 py-4 bg-amber border-4 border-amber text-charcoal font-bold text-lg uppercase tracking-wide hover:-translate-x-1 hover:-translate-y-1 transition-all duration-200 shadow-[4px_4px_0_#F5F1E8]"
-            >
-              View Open Positions
-            </a>
-          </motion.div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Footer />
       <WhatsAppWidget />

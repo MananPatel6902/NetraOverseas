@@ -137,7 +137,7 @@ export function Contact() {
             </h2>
             <p className="text-slate-600 text-lg mb-8">
               Whether you're looking to import quality products or explore export
-              opportunities, our team is ready to help you navigate the global
+              opportunities, we're ready to help you navigate the global
               trade landscape.
             </p>
 
@@ -152,7 +152,7 @@ export function Contact() {
                 {
                   icon: User,
                   title: 'Dedicated Support',
-                  description: 'A dedicated account manager for every client.',
+                  description: 'Personalized attention and direct support for every client.',
                 },
                 {
                   icon: Mail,

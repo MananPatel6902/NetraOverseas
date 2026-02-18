@@ -1,5 +1,77 @@
 [
   {
+    "id": "surgical",
+    "name": "Surgical Equipments",
+    "icon": "Stethoscope",
+    "description": "High-quality surgical instruments manufactured to international standards",
+    "products": [
+      {
+        "id": "surgical-scissors",
+        "name": "Surgical Scissors",
+        "description": "Precision stainless steel surgical scissors for medical procedures, available in various sizes.",
+        "origin": "India",
+        "image": "/images/inventory/surgical-scissors.jpg"
+      },
+      {
+        "id": "surgical-forceps",
+        "name": "Surgical Forceps",
+        "description": "Premium quality forceps crafted from medical-grade stainless steel for reliable grip and control.",
+        "origin": "India",
+        "image": "/images/inventory/surgical-forceps.jpg"
+      },
+      {
+        "id": "scalpel-set",
+        "name": "Scalpel Set",
+        "description": "Complete scalpel sets with interchangeable blades, ideal for surgical and laboratory use.",
+        "origin": "India",
+        "image": "/images/inventory/scalpel-set.jpg"
+      },
+      {
+        "id": "surgical-clamps",
+        "name": "Surgical Clamps",
+        "description": "Durable hemostatic clamps and artery forceps for precise clamping during procedures.",
+        "origin": "India",
+        "image": "/images/inventory/surgical-clamps.jpg"
+      }
+    ]
+  },
+  {
+    "id": "kids-toys",
+    "name": "Kids Toys",
+    "icon": "ToyBrick",
+    "description": "Safe, fun, and educational toys for children of all ages",
+    "products": [
+      {
+        "id": "building-blocks",
+        "name": "Building Blocks",
+        "description": "Colorful interlocking building blocks that encourage creativity and motor skill development.",
+        "origin": "India",
+        "image": "/images/inventory/building-blocks.jpg"
+      },
+      {
+        "id": "stuffed-animals",
+        "name": "Stuffed Animals",
+        "description": "Soft and cuddly plush toys made with child-safe, hypoallergenic materials.",
+        "origin": "India",
+        "image": "/images/inventory/stuffed-animals.jpg"
+      },
+      {
+        "id": "educational-puzzles",
+        "name": "Educational Puzzles",
+        "description": "Engaging jigsaw and wooden puzzles designed to boost cognitive development in children.",
+        "origin": "India",
+        "image": "/images/inventory/educational-puzzles.jpg"
+      },
+      {
+        "id": "toy-cars",
+        "name": "Toy Cars",
+        "description": "Durable die-cast and plastic toy vehicles in various models and colors for endless play.",
+        "origin": "India",
+        "image": "/images/inventory/toy-cars.jpg"
+      }
+    ]
+  },
+  {
     "id": "spices",
     "name": "Spices",
     "icon": "Leaf",

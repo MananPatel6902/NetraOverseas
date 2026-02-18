@@ -19,7 +19,7 @@ const values = [
   {
     icon: Users,
     title: 'SUPPORT',
-    description: 'Dedicated team available 24/7 for inquiries',
+    description: 'Dedicated support available 24/7 for inquiries',
   },
 ];
 
@@ -139,7 +139,7 @@ export function About() {
                 quality control processes and commitment to sustainable trade practices.
               </p>
               <p className="text-lg text-charcoal/90 leading-relaxed">
-                Today, with a team of over 200 dedicated professionals and a network of trusted
+                Today, under the sole leadership of our founder and a network of trusted
                 partners worldwide, we continue to deliver excellence in every shipment.
               </p>
             </div>

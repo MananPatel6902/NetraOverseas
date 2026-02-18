@@ -11,7 +11,7 @@ interface FooterLink {
 const footerLinks: Record<string, FooterLink[]> = {
   company: [
     { label: 'About Us', href: '#about' },
-    { label: 'Our Team', href: '/team', isRoute: true },
+    { label: 'Our Founder', href: '/team', isRoute: true },
     { label: 'Careers', href: '#contact' },
     { label: 'News', href: '#' },
   ],
