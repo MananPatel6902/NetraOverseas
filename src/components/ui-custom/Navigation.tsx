@@ -44,14 +44,7 @@ export function Navigation() {
 
     // If we're not on the home page and the link is a section anchor
     if (location.pathname !== '/' && link.href.startsWith('#')) {
-      navigate('/');
-      // Wait for navigation then scroll to section
-      setTimeout(() => {
-        const element = document.querySelector(link.href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      navigate('/', { state: { scrollTo: link.href } });
       setIsMobileMenuOpen(false);
       return;
     }

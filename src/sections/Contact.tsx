@@ -216,6 +216,8 @@ export function Contact() {
                   <motion.form
                     key="form"
                     name="contact"
+                    data-netlify="true"
+                    data-netlify-honeypot="bot-field"
                     onSubmit={handleSubmit}
                     className="space-y-5"
                     initial={{ opacity: 1 }}

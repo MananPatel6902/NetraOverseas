@@ -57,14 +57,7 @@ export function Footer() {
 
     // If we're not on the home page and the link is a section anchor, navigate home first
     if (location.pathname !== '/' && link.href.startsWith('#')) {
-      navigate('/');
-      // Wait for navigation then scroll to section
-      setTimeout(() => {
-        const element = document.querySelector(link.href);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      navigate('/', { state: { scrollTo: link.href } });
       return;
     }
 
@@ -118,18 +111,18 @@ export function Footer() {
               transition={{ delay: 0.2 }}
             >
               <a
-                href="mailto:info@netraoverseas.com"
+                href="mailto:102220219.sask.corp@gmail.com"
                 className="flex items-center gap-3 text-slate-500 hover:text-blue-700 transition-colors text-sm"
               >
                 <Mail className="w-4 h-4" />
-                info@netraoverseas.com
+                102220219.sask.corp@gmail.com
               </a>
               <a
                 href="tel:+917912345678"
                 className="flex items-center gap-3 text-slate-500 hover:text-blue-700 transition-colors text-sm"
               >
                 <Phone className="w-4 h-4" />
-                +91 79 1234 5678
+                +1 825 713 5461
               </a>
               <div className="flex items-start gap-3 text-slate-500 text-sm">
                 <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
@@ -207,6 +200,11 @@ export function Footer() {
               ))}
             </motion.div>
           </div>
+
+          {/* Developer credit */}
+          <p className="text-center text-slate-300 text-[10px] mt-3 tracking-wide">
+            Developed &amp; managed by Workaidly Solutions Pvt. Ltd.
+          </p>
         </div>
       </div>
     </footer>

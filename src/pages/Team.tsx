@@ -31,10 +31,10 @@ const owners: Owner[] = [
     id: 'owner-1',
     name: 'Ketan Patel',
     role: 'Founder & CEO',
-    image: '/images/owner-1.jpg',
+    image: '/images/Founder/founder.jpg',
     bio: 'Ketan is the visionary founder behind NetraFlyOverseas, single-handedly building the company from the ground up. With extensive experience in international trade, he oversees every aspect of operations - from sourcing and quality assurance to logistics and client relationships. His hands-on leadership and deep industry knowledge drive the company\'s continued growth across global markets.',
     phone: '+91 99987 28153',
-    email: 'ketan@netraflyoverseas.com',
+    email: '102220219.sask.corp@gmail.com',
     linkedin: '#',
   },
 ];
@@ -141,10 +141,12 @@ export function Team() {
                 <div className="flex flex-col lg:flex-row gap-8">
                   {/* Image */}
                   <div className="flex-shrink-0">
-                    <div className="w-48 h-48 border-4 border-charcoal bg-gradient-to-br from-slate-200 to-slate-300 flex items-center justify-center">
-                      <span className="text-6xl text-charcoal/30 font-black">
-                        {owner.name.charAt(0)}
-                      </span>
+                    <div className="w-48 h-48 border-4 border-charcoal overflow-hidden">
+                      <img
+                        src={owner.image}
+                        alt={owner.name}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
                   </div>
 

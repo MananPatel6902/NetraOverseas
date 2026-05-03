@@ -10,28 +10,28 @@
         "name": "Surgical Scissors",
         "description": "Precision stainless steel surgical scissors for medical procedures, available in various sizes.",
         "origin": "India",
-        "image": "/images/inventory/surgical-scissors.jpg"
+        "image": "/images/inventory/surgical/SurgicalScissors.jfif"
       },
       {
         "id": "surgical-forceps",
         "name": "Surgical Forceps",
         "description": "Premium quality forceps crafted from medical-grade stainless steel for reliable grip and control.",
         "origin": "India",
-        "image": "/images/inventory/surgical-forceps.jpg"
+        "image": "/images/inventory/surgical/SurgicalForceps.jpg"
       },
       {
         "id": "scalpel-set",
         "name": "Scalpel Set",
         "description": "Complete scalpel sets with interchangeable blades, ideal for surgical and laboratory use.",
         "origin": "India",
-        "image": "/images/inventory/scalpel-set.jpg"
+        "image": "/images/inventory/surgical/ScalpelSet.jfif"
       },
       {
         "id": "surgical-clamps",
         "name": "Surgical Clamps",
         "description": "Durable hemostatic clamps and artery forceps for precise clamping during procedures.",
         "origin": "India",
-        "image": "/images/inventory/surgical-clamps.jpg"
+        "image": "/images/inventory/surgical/SurgicalClamps.jfif"
       }
     ]
   },
@@ -46,28 +46,28 @@
         "name": "Building Blocks",
         "description": "Colorful interlocking building blocks that encourage creativity and motor skill development.",
         "origin": "India",
-        "image": "/images/inventory/building-blocks.jpg"
+        "image": "/images/inventory/kid toys/Building Blocks.jfif"
       },
       {
         "id": "stuffed-animals",
         "name": "Stuffed Animals",
         "description": "Soft and cuddly plush toys made with child-safe, hypoallergenic materials.",
         "origin": "India",
-        "image": "/images/inventory/stuffed-animals.jpg"
+        "image": "/images/inventory/kid toys/StuffedAnimals.jpg"
       },
       {
         "id": "educational-puzzles",
         "name": "Educational Puzzles",
         "description": "Engaging jigsaw and wooden puzzles designed to boost cognitive development in children.",
         "origin": "India",
-        "image": "/images/inventory/educational-puzzles.jpg"
+        "image": "/images/inventory/kid toys/EducationalPuzzles.jfif"
       },
       {
         "id": "toy-cars",
         "name": "Toy Cars",
         "description": "Durable die-cast and plastic toy vehicles in various models and colors for endless play.",
         "origin": "India",
-        "image": "/images/inventory/toy-cars.jpg"
+        "image": "/images/inventory/kid toys/ToyCars.jfif"
       }
     ]
   },
@@ -82,28 +82,28 @@
         "name": "Turmeric Powder",
         "description": "High-curcumin turmeric from Erode, known for its vibrant color and medicinal properties.",
         "origin": "India",
-        "image": "/images/inventory/inventory/turmeric.jpg"
+        "image": "/images/inventory/Spieces/Turmeric Powder.jfif"
       },
       {
         "id": "cumin",
         "name": "Cumin Seeds",
         "description": "Aromatic cumin seeds from Gujarat, perfect for culinary and medicinal use.",
         "origin": "India",
-        "image": "/images/inventory/cumin.jpg"
+        "image": "/images/inventory/Spieces/Cumin Seeds.jfif"
       },
       {
         "id": "cardamom",
         "name": "Green Cardamom",
         "description": "Premium grade cardamom from Kerala, the queen of spices.",
         "origin": "India",
-        "image": "/images/inventory/cardamom.jpg"
+        "image": "/images/inventory/Spieces/Green Cardamom.jfif"
       },
       {
         "id": "pepper",
         "name": "Black Pepper",
         "description": "Bold and aromatic black peppercorns from the Western Ghats.",
         "origin": "India",
-        "image": "/images/inventory/pepper.jpg"
+        "image": "/images/inventory/Spieces/Black Pepper.jfif"
       }
     ]
   },
@@ -118,28 +118,28 @@
         "name": "Channe ka Atta",
         "description": "Protein-rich chickpea flour, gluten-free and versatile.",
         "origin": "India",
-        "image": "/images/inventory/chickpea-flour.jpg"
+        "image": "/images/inventory/Flours/Channe ka Atta.jfif"
       },
       {
         "id": "wheat",
         "name": "Ghehu ka Atta",
         "description": "Stone-ground whole wheat flour for authentic taste.",
         "origin": "India",
-        "image": "/images/inventory/wheat-flour.jpg"
+        "image": "/images/inventory/Flours/Ghehu ka Atta.jfif"
       },
       {
         "id": "rice",
         "name": "Rice Flour",
         "description": "Fine rice flour ideal for South Indian delicacies.",
         "origin": "India",
-        "image": "/images/inventory/rice-flour.jpg"
+        "image": "/images/inventory/Flours/Rice Flour.jfif"
       },
       {
         "id": "millet",
         "name": "Millet Flour",
         "description": "Nutrient-dense millet flour for healthy alternatives.",
         "origin": "India",
-        "image": "/images/inventory/millet-flour.jpg"
+        "image": "/images/inventory/Flours/Millet Flour.webp"
       }
     ]
   },
@@ -154,28 +154,28 @@
         "name": "Basmati Rice",
         "description": "Aromatic long-grain basmati rice from Punjab.",
         "origin": "India",
-        "image": "/images/inventory/basmati.jpg"
+        "image": "/images/inventory/Grains/Basmati Rice.jfif"
       },
       {
         "id": "moong",
         "name": "Moong Dal",
         "description": "Split yellow mung beans, easy to digest and nutritious.",
         "origin": "India",
-        "image": "/images/inventory/moong-dal.jpg"
+        "image": "/images/inventory/Grains/moong-dal.jpg"
       },
       {
         "id": "toor",
         "name": "Toor Dal",
         "description": "Premium pigeon peas, staple of Indian cuisine.",
         "origin": "India",
-        "image": "/images/inventory/toor-dal.jpg"
+        "image": "/images/inventory/Grains/Toor Dal.jfif"
       },
       {
         "id": "quinoa",
         "name": "Quinoa",
         "description": "Protein-rich superfood grain for health-conscious consumers.",
         "origin": "Peru/India",
-        "image": "/images/inventory/quinoa.jpg"
+        "image": "/images/inventory/Grains/Quinoa.jfif"
       }
     ]
   },
@@ -190,28 +190,28 @@
         "name": "Mustard Oil",
         "description": "Cold-pressed mustard oil with authentic pungency.",
         "origin": "India",
-        "image": "/images/inventory/mustard-oil.jpg"
+        "image": "/images/inventory/Oil and Ghee/mustard-oil.jpg"
       },
       {
         "id": "coconut",
         "name": "Coconut Oil",
         "description": "Virgin coconut oil from Kerala, multi-purpose goodness.",
         "origin": "India",
-        "image": "/images/inventory/coconut-oil.jpg"
+        "image": "/images/inventory/Oil and Ghee/coconut-oil.jpg"
       },
       {
         "id": "ghee",
         "name": "Pure Ghee",
         "description": "Traditional clarified butter with rich aroma.",
         "origin": "India",
-        "image": "/images/inventory/ghee.jpg"
+        "image": "/images/inventory/Oil and Ghee/ghee.jpg"
       },
       {
         "id": "sesame",
         "name": "Sesame Oil",
         "description": "Cold-pressed sesame oil for cooking and massage.",
         "origin": "India",
-        "image": "/images/inventory/sesame-oil.jpg"
+        "image": "/images/inventory/Oil and Ghee/Sesame Oil.webp"
       }
     ]
   },
@@ -226,28 +226,28 @@
         "name": "Assam Tea",
         "description": "Bold and malty black tea from Assam gardens.",
         "origin": "India",
-        "image": "/images/inventory/tea.jpg"
+        "image": "/images/inventory/Beverages and dry fruits/tea.jpg"
       },
       {
         "id": "coffee",
         "name": "Arabica Coffee",
         "description": "Single-origin Arabica from Chikmagalur hills.",
         "origin": "India",
-        "image": "/images/inventory/coffee.jpg"
+        "image": "/images/inventory/Beverages and dry fruits/coffee.jpg"
       },
       {
         "id": "cashew",
         "name": "Cashew Nuts",
         "description": "Premium W320 grade cashews from Goa.",
         "origin": "India",
-        "image": "/images/inventory/cashew.jpg"
+        "image": "/images/inventory/Beverages and dry fruits/cashew.jpg"
       },
       {
         "id": "raisins",
         "name": "Raisins",
         "description": "Sweet and plump raisins from Nashik vineyards.",
         "origin": "India",
-        "image": "/images/inventory/raisins.jpg"
+        "image": "/images/inventory/Beverages and dry fruits/raisins.jpg"
       }
     ]
   }
