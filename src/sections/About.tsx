@@ -1,6 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Shield, Clock, Users } from 'lucide-react';
-import { useRef } from 'react';
 import { useStaggeredReveal } from '@/hooks/useConvergingScroll';
 import { BrutalistCard } from '@/components/ui-custom/BrutalistCard';
 import { BrutalistMosaicGrid } from '@/components/layout/AsymmetricGrid';
@@ -39,60 +38,17 @@ const certifications = [
 ];
 
 export function About() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const valuesAnimation = useStaggeredReveal({ threshold: 0.2 });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Left pane: slides in from left, slides out to left
-  // Content centered from 0.2 to 0.8 scroll progress
-  const leftX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [-60, -20, 0, 0, -20, -60]
-  );
-  const leftOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.08, 0.15, 0.85, 0.92, 1],
-    [0, 0.7, 1, 1, 0.7, 0]
-  );
-
-  // Right pane: slides in from right, slides out to right
-  const rightX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [60, 20, 0, 0, 20, 60]
-  );
-  const rightOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.08, 0.15, 0.85, 0.92, 1],
-    [0, 0.7, 1, 1, 0.7, 0]
-  );
 
   return (
     <section
-      ref={sectionRef}
       id="about"
       className="relative py-24 lg:py-32 overflow-hidden bg-cream"
     >
-      {/* Parallax Background Shapes */}
+      {/* Background Shapes */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Large charcoal line */}
-        <motion.div
-          style={{ x: leftX, opacity: 0.2 }}
-          className="absolute top-1/3 left-2/8 w-2 h-96 bg-charcoal"
-          aria-hidden="true"
-        />
-
-        {/* Amber square */}
-        <motion.div
-          style={{ x: rightX, opacity: rightOpacity }}
-          className="absolute bottom-1/4 right-1/4 w-48 h-48 border-8 border-amber"
-          aria-hidden="true"
-        />
+        <div className="absolute top-1/3 left-2/8 w-2 h-96 bg-charcoal opacity-20" aria-hidden="true" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 border-8 border-amber opacity-30" aria-hidden="true" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,17 +75,17 @@ export function About() {
 
         {/* Split-Screen Layout */}
         <div className="grid lg:grid-cols-2 gap-16 mb-20">
-          {/* LEFT PANE - Story + Certifications - Slides in from left */}
+          {/* LEFT PANE - Story + Certifications */}
           <motion.div
-            style={{
-              x: leftX,
-              opacity: leftOpacity,
-            }}
+            initial={{ x: -40, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="space-y-8"
           >
             <div className="space-y-6">
               <p className="text-lg text-charcoal/90 leading-relaxed">
-                Founded in 2010, NetraOverseas began with a simple mission: to bridge the gap
+                Founded in 2019, Netra Fly Overseas began with a simple mission: to bridge the gap
                 between quality producers and global markets. What started as a small trading
                 company has now grown into a trusted name across 45+ countries.
               </p>
@@ -167,12 +123,12 @@ export function About() {
             </div>
           </motion.div>
 
-          {/* RIGHT PANE - Brutalist Mosaic Gallery - Slides in from right */}
+          {/* RIGHT PANE - Brutalist Mosaic Gallery */}
           <motion.div
-            style={{
-              x: rightX,
-              opacity: rightOpacity,
-            }}
+            initial={{ x: 40, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <BrutalistMosaicGrid images={galleryImages} />
           </motion.div>

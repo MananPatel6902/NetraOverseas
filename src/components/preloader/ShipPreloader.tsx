@@ -350,7 +350,7 @@ export function ShipPreloader({ onComplete }: ShipPreloaderProps) {
             transition={{ duration: 0.5 }}
           >
             <p className="text-slate-600 text-sm tracking-[0.25em] uppercase font-semibold">
-              Loading Netra Overseas
+              Loading Netra Fly Overseas
             </p>
             <div className="mt-4 flex justify-center gap-2">
               {[...Array(3)].map((_, i) => (

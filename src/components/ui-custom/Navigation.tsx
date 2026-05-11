@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Menu, X, Ship } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface NavLink {
@@ -91,13 +91,11 @@ export function Navigation() {
               whileHover={{ scale: 1.02 }}
             >
               <div className="relative">
-                <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-700 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
-                  <Ship className="w-5 h-5 text-white" />
-                </div>
+                <img src="/images/Logo/logo.png" alt="Netra Fly Overseas Logo" className="w-10 h-10 object-contain" />
               </div>
               <div className="hidden sm:block">
                 <p className={`font-bold text-lg leading-tight transition-colors ${isScrolled ? 'text-slate-900' : 'text-slate-900'}`}>
-                  NetraOverseas
+                  Netra Fly Overseas
                 </p>
                 <p className="text-blue-600 text-xs tracking-wider font-medium">
                   GLOBAL TRADE SOLUTIONS

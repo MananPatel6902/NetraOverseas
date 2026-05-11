@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Forge — PDF to Google Form</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0d1117;
+    --bg2: #161b25;
+    --bg3: #1e2535;
+    --border: #2a3347;
+    --border2: #3a4a62;
+    --text: #e8e3d8;
+    --text2: #8a96a8;
+    --text3: #5a6578;
+    --accent: #f0a840;
+    --accent-bg: rgba(240,168,64,0.08);
+    --accent-border: rgba(240,168,64,0.25);
+    --green: #3ecf7a;
+    --green-bg: rgba(62,207,122,0.08);
+    --green-border: rgba(62,207,122,0.25);
+    --red: #f05a5a;
+    --red-bg: rgba(240,90,90,0.08);
+    --red-border: rgba(240,90,90,0.25);
+    --blue: #5a9cf5;
+    --blue-bg: rgba(90,156,245,0.08);
+  }
+
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 16px 60px;
+  }
+
+  /* ── Header ── */
+  header {
+    width: 100%;
+    max-width: 680px;
+    padding: 36px 0 28px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo-icon {
+    width: 40px; height: 40px;
+    background: var(--accent);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    color: #0d1117;
+    font-weight: 700;
+  }
+  .logo-text { font-family: 'Syne', sans-serif; font-size: 22px; color: var(--text); }
+  .logo-sub { font-size: 13px; color: var(--text2); margin-top: 1px; }
+  .api-badge {
+    font-size: 12px; padding: 5px 12px;
+    border: 1px solid var(--border2);
+    border-radius: 99px;
+    color: var(--text2);
+    cursor: pointer;
+    background: var(--bg2);
+    transition: border-color 0.15s;
+  }
+  .api-badge:hover { border-color: var(--accent); color: var(--accent); }
+  .api-badge.set { border-color: var(--green-border); color: var(--green); }
+
+  /* ── Main ── */
+  main { width: 100%; max-width: 680px; }
+
+  /* ── API Key Modal ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100;
+    padding: 16px;
+  }
+  .modal {
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    border-radius: 16px;
+    padding: 28px;
+    width: 100%; max-width: 420px;
+  }
+  .modal h2 { font-family: 'Syne', sans-serif; font-size: 18px; margin-bottom: 8px; }
+  .modal p { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 20px; }
+  .modal a { color: var(--accent); text-decoration: none; }
+  .modal a:hover { text-decoration: underline; }
+  .modal input { width: 100%; margin-bottom: 12px; }
+  .modal-btns { display: flex; gap: 10px; }
+
+  /* ── Cards / Sections ── */
+  .section { margin-bottom: 14px; }
+  .section-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.06em;
+    text-transform: uppercase; color: var(--text3);
+    margin-bottom: 10px;
+  }
+  .card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+  }
+  .field { margin-bottom: 16px; }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+    margin-bottom: 7px;
+  }
+  .field label span { font-weight: 400; opacity: 0.6; }
+
+  /* ── Inputs ── */
+  input[type=text], input[type=password], textarea, select {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    border-color: var(--border2);
+  }
+  textarea { resize: vertical; min-height: 76px; line-height: 1.5; }
+  input::placeholder, textarea::placeholder { color: var(--text3); }
+
+  /* ── Number slider ── */
+  .num-row { display: flex; align-items: center; gap: 14px; }
+  .num-row input[type=range] {
+    flex: 1; background: none; border: none; padding: 0;
+    accent-color: var(--accent);
+    height: 4px;
+  }
+  .num-badge {
+    font-size: 18px; font-weight: 600;
+    min-width: 40px; text-align: right;
+    color: var(--accent);
+  }
+  .num-hints { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-top: 5px; }
+
+  /* ── Drop zone ── */
+  .drop-zone {
+    border: 1.5px dashed var(--border2);
+    border-radius: 10px;
+    padding: 28px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+    position: relative;
+  }
+  .drop-zone:hover, .drop-zone.over { background: var(--bg3); border-color: var(--accent); }
+  .drop-zone.loaded { border-style: solid; border-color: var(--green-border); background: var(--green-bg); }
+  .drop-zone .dz-icon { font-size: 30px; margin-bottom: 10px; }
+  .drop-zone .dz-title { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
+  .drop-zone .dz-hint { font-size: 12px; color: var(--text2); }
+  .drop-zone .dz-file { font-size: 13px; font-weight: 500; color: var(--green); margin-top: 6px; }
+  #file-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+
+  /* ── Buttons ── */
+  .btn {
+    display: block; width: 100%;
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer; border: none;
+    transition: opacity 0.15s, transform 0.1s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn-primary {
+    background: var(--accent);
+    color: #0d1117;
+  }
+  .btn-primary:hover { opacity: 0.92; }
+  .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; transform: none; }
+  .btn-secondary {
+    background: var(--bg3);
+    color: var(--text);
+    border: 1px solid var(--border2);
+    font-size: 14px;
+  }
+  .btn-secondary:hover { background: var(--bg2); }
+  .btn-sm {
+    display: inline-block; width: auto; padding: 8px 16px;
+    font-size: 13px; border-radius: 8px;
+  }
+
+  .err-msg { font-size: 13px; color: var(--red); margin-top: 10px; }
+
+  /* ── Progress ── */
+  .progress-wrap {
+    min-height: 380px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 20px; text-align: center;
+  }
+  .spinner {
+    width: 44px; height: 44px;
+    border: 3px solid var(--border2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .prog-title { font-family: 'Syne', sans-serif; font-size: 20px; }
+  .prog-sub { font-size: 13px; color: var(--text2); max-width: 320px; line-height: 1.6; }
+  .stage-list { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 340px; }
+  .stage-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 11px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px; color: var(--text2);
+    text-align: left;
+  }
+  .stage-item.active { border-color: var(--accent-border); background: var(--accent-bg); color: var(--text); }
+  .stage-item.done { border-color: var(--green-border); background: var(--green-bg); color: var(--green); }
+  .stage-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--border2); flex-shrink: 0;
+  }
+  .stage-dot.active { background: var(--accent); }
+  .stage-dot.done { background: var(--green); }
+
+  /* ── Result ── */
+  .result-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 10px; }
+  .result-header h2 { font-family: 'Syne', sans-serif; font-size: 20px; }
+
+  .form-link-box {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px;
+    background: var(--green-bg);
+    border: 1px solid var(--green-border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .form-link-box .check { font-size: 20px; }
+  .form-link-box .link-inner {}
+  .form-link-box .link-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green); opacity: 0.7; margin-bottom: 3px; }
+  .form-link-box a { color: var(--green); font-weight: 600; font-size: 14px; word-break: break-all; text-decoration: none; }
+  .form-link-box a:hover { text-decoration: underline; }
+  .open-btn {
+    margin-left: auto; flex-shrink: 0;
+    background: var(--green);
+    color: #0d1117; font-weight: 600;
+    font-size: 13px; padding: 8px 16px;
+    border-radius: 8px; border: none;
+    cursor: pointer; text-decoration: none;
+    display: inline-block;
+  }
+
+  .script-box {
+    background: var(--bg2);
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .script-box h3 { font-size: 14px; font-weight: 600; margin-bottom: 6px; color: var(--accent); }
+  .script-box p { font-size: 13px; color: var(--text2); margin-bottom: 14px; line-height: 1.6; }
+  .script-box p a { color: var(--accent); text-decoration: none; }
+  .script-box p a:hover { text-decoration: underline; }
+  .script-steps { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .script-step { font-size: 12px; padding: 5px 12px; background: var(--bg3); border: 1px solid var(--border2); border-radius: 99px; color: var(--text2); }
+  .code-block {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-family: monospace;
+    font-size: 11.5px;
+    max-height: 200px;
+    overflow-y: auto;
+    white-space: pre;
+    color: var(--text2);
+    display: none;
+  }
+  .code-block.show { display: block; }
+  .copy-row { display: flex; gap: 8px; }
+
+  .q-section { margin-top: 20px; }
+  .q-section h3 { font-size: 14px; font-weight: 600; color: var(--text2); margin-bottom: 10px; }
+  .q-list { display: flex; flex-direction: column; gap: 8px; }
+  .q-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .q-card .q-num { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 6px; }
+  .q-card .q-text { font-size: 14px; font-weight: 500; margin-bottom: 10px; line-height: 1.5; }
+  .q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .q-opt { font-size: 12px; color: var(--text2); padding: 5px 8px; border-radius: 6px; background: var(--bg3); }
+  .q-opt.correct { background: var(--green-bg); color: var(--green); border: 1px solid var(--green-border); }
+
+  footer { margin-top: 50px; font-size: 12px; color: var(--text3); text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">Q</div>
+    <div>
+      <div class="logo-text">Quiz Forge</div>
+      <div class="logo-sub">PDF → Google Form in seconds</div>
+    </div>
+  </div>
+  <button class="api-badge" id="api-toggle">⚙ API Key</button>
+</header>
+
+<!-- API Key Modal -->
+<div class="modal-overlay" id="modal" style="display:none">
+  <div class="modal">
+    <h2>Anthropic API key</h2>
+    <p>
+      Quiz Forge uses Claude to read your PDF and generate questions.<br>
+      Get your key at <a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> — it stays in your browser only.
+    </p>
+    <input type="password" id="modal-key" placeholder="sk-ant-api03-..." autocomplete="off">
+    <div class="modal-btns">
+      <button class="btn btn-primary btn-sm" id="modal-save">Save key</button>
+      <button class="btn btn-secondary btn-sm" id="modal-cancel">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<main id="main-content"></main>
+
+<footer>Built with Claude API &nbsp;·&nbsp; <a href="https://console.anthropic.com" target="_blank" style="color:var(--text3)">Get API key</a></footer>
+
+<script>
+let apiKey = sessionStorage.getItem('qf_key') || '';
+let pdfBase64 = null;
+let pdfName = '';
+let progressStage = 0;
+let generatedQuestions = [];
+let formUrl = null;
+let appsScript = '';
+let showCode = false;
+
+// ─── State machine ───
+function getView() { return document.getElementById('main-content').dataset.view || 'form'; }
+function setView(v) { document.getElementById('main-content').dataset.view = v; render(); }
+
+function render() {
+  const v = getView();
+  const el = document.getElementById('main-content');
+  if (v === 'form') el.innerHTML = renderForm();
+  else if (v === 'loading') el.innerHTML = renderLoading();
+  else if (v === 'done') el.innerHTML = renderDone();
+  bindEvents();
+  updateApiBtn();
+}
+
+// ─── Views ───
+function renderForm() {
+  return `
+  <div class="section">
+    <div class="card">
+      <div class="field">
+        <label>Quiz title</label>
+        <input type="text" id="inp-title" placeholder="e.g. Chapter 5 — Cell Biology Assessment" value="${esc(window._title||'')}">
+      </div>
+      <div class="field">
+        <label>Description <span>(book name, unit, syllabus ref)</span></label>
+        <textarea id="inp-desc" placeholder="e.g. Human Anatomy &amp; Physiology by Marieb — Unit 2: Cardiovascular System, Chapters 18–20">${esc(window._desc||'')}</textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="card">
+      <div class="field">
+        <label>Upload PDF</label>
+        <div class="drop-zone ${pdfBase64 ? 'loaded' : ''}" id="drop-zone">
+          <input type="file" id="file-input" accept=".pdf">
+          <div class="dz-icon">${pdfBase64 ? '✓' : '📄'}</div>
+          <div class="dz-title">${pdfBase64 ? 'PDF loaded' : 'Drop your PDF here'}</div>
+          <div class="dz-hint">${pdfBase64 ? '' : 'or click to browse — textbooks, lecture notes, study material'}</div>
+          ${pdfBase64 ? `<div class="dz-file">${esc(pdfName)}</div>` : ''}
+        </div>
+      </div>
+      <div class="field">
+        <label>Number of questions</label>
+        <div class="num-row">
+          <input type="range" id="num-q" min="5" max="50" step="5" value="${window._numQ||10}">
+          <span class="num-badge" id="num-display">${window._numQ||10}</span>
+        </div>
+        <div class="num-hints"><span>5</span><span>25</span><span>50</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="err-msg" class="err-msg"></div>
+  <button class="btn btn-primary" id="gen-btn" style="margin-top:6px">Generate quiz &amp; create Google Form →</button>
+  `;
+}
+
+function renderLoading() {
+  const stages = [
+    'Reading PDF content',
+    'Generating questions',
+    'Creating Google Form',
+  ];
+  return `
+  <div class="progress-wrap">
+    <div class="spinner"></div>
+    <div class="prog-title">${stages[Math.min(progressStage,2)]}</div>
+    <div class="prog-sub">${[
+      'Claude is analyzing your document and extracting key concepts…',
+      `Crafting ${window._numQ||10} multiple choice questions with correct answers…`,
+      'Building your quiz in Google Forms via Apps Script…',
+    ][Math.min(progressStage,2)]}</div>
+    <div class="stage-list">
+      ${stages.map((s,i)=>`
+        <div class="stage-item ${i===progressStage?'active':i<progressStage?'done':''}">
+          <div class="stage-dot ${i===progressStage?'active':i<progressStage?'done':''}"></div>
+          ${s}
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function renderDone() {
+  const formSection = formUrl
+    ? `<div class="form-link-box">
+        <span class="check">✓</span>
+        <div class="link-inner">
+          <div class="link-label">Google Form created</div>
+          <a href="${esc(formUrl)}" target="_blank">${esc(formUrl)}</a>
+        </div>
+        <a class="open-btn" href="${esc(formUrl)}" target="_blank">Open ↗</a>
+       </div>`
+    : `<div class="script-box">
+        <h3>📋 Create form with Apps Script</h3>
+        <p>
+          Google Forms API needs extra permissions not available here. Run this one-click script instead:<br>
+          Open <a href="https://script.google.com" target="_blank">script.google.com</a> → New project → paste → Run → get your form link.
+        </p>
+        <div class="script-steps">
+          <span class="script-step">1. Open script.google.com</span>
+          <span class="script-step">2. New project</span>
+          <span class="script-step">3. Paste &amp; Run</span>
+          <span class="script-step">4. Copy form URL</span>
+        </div>
+        <div class="copy-row">
+          <button class="btn btn-secondary btn-sm" id="copy-btn">Copy script</button>
+          <button class="btn btn-secondary btn-sm" id="toggle-btn">${showCode?'Hide':'Show'} code</button>
+        </div>
+        <div class="code-block ${showCode?'show':''}" id="code-block">${esc(appsScript)}</div>
+       </div>`;
+
+  return `
+  <div class="result-header">
+    <h2>${esc(window._title||'Quiz')}</h2>
+    <button class="btn btn-secondary btn-sm" id="reset-btn">← New quiz</button>
+  </div>
+  ${formSection}
+  <div class="q-section">
+    <h3>${generatedQuestions.length} questions generated</h3>
+    <div class="q-list">
+      ${generatedQuestions.map((q,i)=>`
+        <div class="q-card">
+          <div class="q-num">Question ${i+1}</div>
+          <div class="q-text">${esc(q.question)}</div>
+          <div class="q-opts">
+            ${q.options.map(o=>`<div class="q-opt ${o===q.answer?'correct':''}">${esc(o)}</div>`).join('')}
+          </div>
+        </div>`).join('')}
+    </div>
+  </div>`;
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── Events ───
+function bindEvents() {
+  const v = getView();
+  if (v === 'form') {
+    const titleEl = document.getElementById('inp-title');
+    if (titleEl) titleEl.addEventListener('input', e => { window._title = e.target.value; });
+    const descEl = document.getElementById('inp-desc');
+    if (descEl) descEl.addEventListener('input', e => { window._desc = e.target.value; });
+    const numEl = document.getElementById('num-q');
+    if (numEl) numEl.addEventListener('input', e => {
+      window._numQ = parseInt(e.target.value);
+      document.getElementById('num-display').textContent = window._numQ;
+    });
+    const drop = document.getElementById('drop-zone');
+    const fileInp = document.getElementById('file-input');
+    if (drop) {
+      drop.addEventListener('dragover', e => { e.preventDefault(); drop.classList.add('over'); });
+      drop.addEventListener('dragleave', () => drop.classList.remove('over'));
+      drop.addEventListener('drop', e => { e.preventDefault(); drop.classList.remove('over'); loadFile(e.dataTransfer.files[0]); });
+    }
+    if (fileInp) fileInp.addEventListener('change', e => loadFile(e.target.files[0]));
+    const genBtn = document.getElementById('gen-btn');
+    if (genBtn) genBtn.addEventListener('click', runGenerate);
+  }
+  if (v === 'done') {
+    const resetBtn = document.getElementById('reset-btn');
+    if (resetBtn) resetBtn.addEventListener('click', () => {
+      generatedQuestions=[]; formUrl=null; appsScript=''; showCode=false;
+      setView('form');
+    });
+    const copyBtn = document.getElementById('copy-btn');
+    if (copyBtn) copyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText(appsScript).then(() => {
+        copyBtn.textContent = 'Copied!';
+        setTimeout(() => copyBtn.textContent='Copy script', 2000);
+      });
+    });
+    const toggleBtn = document.getElementById('toggle-btn');
+    if (toggleBtn) toggleBtn.addEventListener('click', () => {
+      showCode = !showCode;
+      const cb = document.getElementById('code-block');
+      if (cb) cb.classList.toggle('show', showCode);
+      toggleBtn.textContent = (showCode?'Hide':'Show') + ' code';
+    });
+  }
+}
+
+function loadFile(file) {
+  if (!file || file.type !== 'application/pdf') {
+    showErr('Please upload a PDF file.'); return;
+  }
+  pdfName = file.name;
+  const r = new FileReader();
+  r.onload = e => { pdfBase64 = e.target.result.split(',')[1]; render(); };
+  r.readAsDataURL(file);
+}
+
+function showErr(msg) {
+  const el = document.getElementById('err-msg');
+  if (el) el.textContent = msg;
+}
+
+function updateApiBtn() {
+  const btn = document.getElementById('api-toggle');
+  if (!btn) return;
+  if (apiKey) { btn.textContent = '✓ API Key set'; btn.classList.add('set'); }
+  else { btn.textContent = '⚙ API Key'; btn.classList.remove('set'); }
+}
+
+// ─── API modal ───
+document.getElementById('api-toggle').addEventListener('click', () => {
+  document.getElementById('modal').style.display = 'flex';
+  document.getElementById('modal-key').value = apiKey;
+  setTimeout(() => document.getElementById('modal-key').focus(), 50);
+});
+document.getElementById('modal-save').addEventListener('click', () => {
+  apiKey = document.getElementById('modal-key').value.trim();
+  sessionStorage.setItem('qf_key', apiKey);
+  document.getElementById('modal').style.display = 'none';
+  updateApiBtn();
+});
+document.getElementById('modal-cancel').addEventListener('click', () => {
+  document.getElementById('modal').style.display = 'none';
+});
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target === document.getElementById('modal')) document.getElementById('modal').style.display = 'none';
+});
+
+// ─── Generate ───
+async function runGenerate() {
+  const title = document.getElementById('inp-title')?.value.trim() || window._title || '';
+  const desc = document.getElementById('inp-desc')?.value.trim() || window._desc || '';
+  const numQ = window._numQ || 10;
+  window._title = title; window._desc = desc; window._numQ = numQ;
+
+  if (!apiKey) { showErr('Please set your Anthropic API key first (top-right button).'); return; }
+  if (!title) { showErr('Please enter a quiz title.'); return; }
+  if (!pdfBase64) { showErr('Please upload a PDF file.'); return; }
+
+  progressStage = 0;
+  setView('loading');
+
+  // ── Stage 1: Generate questions ──
+  try {
+    progressStage = 1; render();
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 4000,
+        system: `You are an expert quiz maker. Generate exactly ${numQ} multiple choice questions from the PDF document. Return ONLY valid JSON (no markdown, no code fences, no extra text):
+{"questions":[{"question":"...","options":["A. ...","B. ...","C. ...","D. ..."],"answer":"A. ..."}]}
+Rules: exactly 4 options per question labeled A. B. C. D., the "answer" must match one option exactly, cover diverse topics from the document, clear unambiguous questions.`,
+        messages: [{
+          role: 'user',
+          content: [
+            { type: 'document', source: { type: 'base64', media_type: 'application/pdf', data: pdfBase64 } },
+            { type: 'text', text: `Quiz title: "${title}". Context: ${desc||'General assessment from this document'}. Generate ${numQ} questions.` }
+          ]
+        }]
+      })
+    });
+    const data = await r.json();
+    if (data.error) throw new Error(data.error.message);
+    const raw = data.content[0].text.replace(/```json|```/g,'').trim();
+    generatedQuestions = JSON.parse(raw).questions;
+  } catch(e) {
+    progressStage = 0; setView('form');
+    setTimeout(() => showErr('Error: ' + e.message), 50);
+    return;
+  }
+
+  // ── Stage 2: Build Apps Script ──
+  progressStage = 2; render();
+  await new Promise(r => setTimeout(r, 600));
+
+  appsScript = buildScript(generatedQuestions, title, desc);
+  formUrl = null;
+  setView('done');
+}
+
+function buildScript(qs, title, desc) {
+  const lines = qs.map((q, i) => {
+    const ci = q.options.findIndex(o => o === q.answer);
+    const choices = q.options.map((o, j) =>
+      `    q${i}.createChoice(${JSON.stringify(o)}, ${j === ci})`
+    ).join(',\n');
+    return `
+  var q${i} = form.addMultipleChoiceItem();
+  q${i}.setTitle(${JSON.stringify(q.question)});
+  q${i}.setChoices([
+${choices}
+  ]);
+  q${i}.setPoints(1);
+  q${i}.setRequired(true);`;
+  }).join('\n');
+
+  return `function createQuizForm() {
+  var form = FormApp.create(${JSON.stringify(title)});
+  form.setDescription(${JSON.stringify(desc || '')});
+  form.setIsQuiz(true);
+  form.setShuffleQuestions(false);
+  form.setShowLinkToRespondAgain(false);
+${lines}
+
+  var publishedUrl = form.getPublishedUrl();
+  var editUrl = form.getEditUrl();
+  Logger.log('Published URL: ' + publishedUrl);
+  Logger.log('Edit URL: ' + editUrl);
+  Browser.msgBox('✅ Quiz Created!\\n\\nShare this link:\\n' + publishedUrl + '\\n\\nEdit form here:\\n' + editUrl);
+}`;
+}
+
+// ─── Init ───
+window._title = ''; window._desc = ''; window._numQ = 10;
+render();
+if (!apiKey) setTimeout(() => { document.getElementById('modal').style.display = 'flex'; }, 400);
+</script>
+</body>
+</html>

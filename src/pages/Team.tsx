@@ -32,7 +32,7 @@ const owners: Owner[] = [
     name: 'Ketan Patel',
     role: 'Founder & CEO',
     image: '/images/Founder/founder.jpg',
-    bio: 'Ketan is the visionary founder behind NetraFlyOverseas, single-handedly building the company from the ground up. With extensive experience in international trade, he oversees every aspect of operations - from sourcing and quality assurance to logistics and client relationships. His hands-on leadership and deep industry knowledge drive the company\'s continued growth across global markets.',
+    bio: 'Ketan is the visionary founder behind Netra Fly Overseas, single-handedly building the company from the ground up. With extensive experience in international trade, he oversees every aspect of operations - from sourcing and quality assurance to logistics and client relationships. His hands-on leadership and deep industry knowledge drive the company\'s continued growth across global markets.',
     phone: '+91 99987 28153',
     email: '102220219.sask.corp@gmail.com',
     linkedin: '#',

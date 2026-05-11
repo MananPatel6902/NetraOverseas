@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { Ship, Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Instagram } from 'lucide-react';
 
 interface FooterLink {
   label: string;
@@ -80,11 +80,9 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-700 to-blue-600 flex items-center justify-center shadow-lg shadow-blue-600/20">
-                <Ship className="w-5 h-5 text-white" />
-              </div>
+              <img src="/images/Logo/logo.png" alt="Netra Fly Overseas Logo" className="w-10 h-10 object-contain" />
               <div>
-                <p className="text-slate-900 font-bold text-lg">NetraOverseas</p>
+                <p className="text-slate-900 font-bold text-lg">Netra Fly Overseas</p>
                 <p className="text-blue-600 text-xs tracking-wider font-semibold">
                   GLOBAL TRADE SOLUTIONS
                 </p>
@@ -178,7 +176,7 @@ export function Footer() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
             >
-              © {new Date().getFullYear()} NetraOverseas. All rights reserved.
+              © {new Date().getFullYear()} Netra Fly Overseas. All rights reserved.
             </motion.p>
 
             {/* Social Links */}

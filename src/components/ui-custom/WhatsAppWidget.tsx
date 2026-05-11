@@ -5,7 +5,7 @@ import { useState } from 'react';
 export function WhatsAppWidget() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const phoneNumber = '+919876543210';
+  const phoneNumber = '+18257135461';
   const message = 'Hello! I would like to inquire about your products.';
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
@@ -26,7 +26,7 @@ export function WhatsAppWidget() {
                 <MessageCircle className="w-5 h-5 text-white" />
               </div>
               <div>
-                <p className="text-slate-900 font-semibold">NetraOverseas Support</p>
+                <p className="text-slate-900 font-semibold">Netra Fly Overseas Support</p>
                 <p className="text-green-600 text-xs flex items-center gap-1">
                   <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                   Online

@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useInView } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   Wheat,
   Leaf,
@@ -130,29 +130,6 @@ const categories: CategoryData[] = inventoryData;
 export function Inventory() {
   const [activeCategory, setActiveCategory] = useState<string>(categories[0]?.id || 'spices');
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const leftX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [-60, -20, 0, 0, -20, -60]
-  );
-  const rightX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [60, 20, 0, 0, 20, 60]
-  );
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.08, 0.15, 0.85, 0.92, 1],
-    [0, 0.7, 1, 1, 0.7, 0]
-  );
 
   const activeCategoryData = categories.find((c) => c.id === activeCategory);
 
@@ -175,7 +152,6 @@ export function Inventory() {
 
   return (
     <section
-      ref={sectionRef}
       id="inventory"
       className="relative py-24 lg:py-32 overflow-hidden bg-slate-50"
     >
@@ -183,39 +159,30 @@ export function Inventory() {
         {/* Section Header */}
         <motion.div
           className="text-center mb-12"
-          style={{ x: leftX, opacity: contentOpacity }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.span
-            className="inline-block text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
+          <span className="inline-block text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4">
             Our Products
-          </motion.span>
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
             Explore Our Inventory
-          </motion.h2>
-          <motion.p
-            className="text-slate-600 text-lg max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
             Browse our extensive catalog of premium quality products. Click on a
             category to discover our offerings.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Category Tabs */}
         <motion.div
           className="flex flex-wrap justify-center gap-3 mb-12"
-          style={{ x: rightX, opacity: contentOpacity }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
         >
           {categories.map((category) => (
             <CategoryTab
@@ -244,7 +211,7 @@ export function Inventory() {
         </AnimatePresence>
 
         {/* Products Grid */}
-        <motion.div style={{ opacity: contentOpacity }}>
+        <div>
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
@@ -264,12 +231,15 @@ export function Inventory() {
               ))}
             </motion.div>
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Bulk Order CTA */}
         <motion.div
           className="mt-16 text-center"
-          style={{ opacity: contentOpacity }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
           <div className="bg-white rounded-2xl p-8 max-w-2xl mx-auto border border-slate-100 shadow-lg">
             <h3 className="text-2xl font-bold text-slate-900 mb-3">

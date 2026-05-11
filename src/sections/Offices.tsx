@@ -1,5 +1,4 @@
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Building2, Globe } from 'lucide-react';
 
 const offices = [
@@ -32,34 +31,8 @@ const offices = [
 ];
 
 export function Offices() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Slide animations - content centered from 0.2 to 0.8 scroll progress
-  const leftX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [-60, -20, 0, 0, -20, -60]
-  );
-  const rightX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [60, 20, 0, 0, 20, 60]
-  );
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.08, 0.15, 0.85, 0.92, 1],
-    [0, 0.7, 1, 1, 0.7, 0]
-  );
-
   return (
     <section
-      ref={sectionRef}
       id="offices"
       className="relative py-24 lg:py-32 overflow-hidden bg-white"
     >
@@ -74,36 +47,24 @@ export function Offices() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header - Slides in from left */}
+        {/* Section Header */}
         <motion.div
           className="text-center mb-16"
-          style={{ x: leftX, opacity: contentOpacity }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.span
-            className="inline-block text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-          >
+          <span className="inline-block text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4">
             Our Locations
-          </motion.span>
-          <motion.h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          </span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6">
             Global Presence
-          </motion.h2>
-          <motion.p
-            className="text-slate-600 text-lg max-w-2xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
+          </h2>
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
             With offices strategically located across key markets, we ensure
             seamless connectivity and support for our global clientele.
-          </motion.p>
+          </p>
         </motion.div>
 
         {/* Offices Grid */}
@@ -112,10 +73,10 @@ export function Offices() {
             <motion.div
               key={office.type}
               className="group relative"
-              style={{
-                x: index === 0 ? leftX : rightX,
-                opacity: contentOpacity,
-              }}
+              initial={{ x: index === 0 ? -40 : 40, opacity: 0 }}
+              whileInView={{ x: 0, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
             >
               <div className="bg-white rounded-2xl p-8 h-full border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300">
                 {/* Header */}
@@ -215,7 +176,10 @@ export function Offices() {
         {/* Global Reach Stats */}
         <motion.div
           className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
-          style={{ opacity: contentOpacity }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
         >
           {[
             { value: '2', label: 'Office Locations' },
@@ -227,8 +191,9 @@ export function Offices() {
               key={stat.label}
               className="text-center"
               initial={{ opacity: 0, scale: 0.9 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.8 + index * 0.1 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
             >
               <p className="text-3xl sm:text-4xl font-bold text-gradient mb-1">
                 {stat.value}

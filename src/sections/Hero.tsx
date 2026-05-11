@@ -1,6 +1,5 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
-import { useRef } from 'react';
 import { BrutalistStatCard } from '@/components/ui-custom/BrutalistCard';
 import { LiquidGlassText } from '@/components/ui-custom/LiquidGlassText';
 import { scrollTo } from '@/lib/lenis';
@@ -13,31 +12,12 @@ const stats = [
 ];
 
 export function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  // Left pane slides out to the left when scrolling
-  const leftX = useTransform(scrollYProgress, [0, 0.5, 1], [0, -80, -200]);
-  const leftOpacity = useTransform(scrollYProgress, [0, 0.3, 0.6], [1, 0.7, 0]);
-
-  // Right pane slides out to the right when scrolling
-  const rightX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 80, 200]);
-  const rightOpacity = useTransform(scrollYProgress, [0, 0.3, 0.6], [1, 0.7, 0]);
-
-  // Video overlay fades out slightly for better content visibility
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.5, 0.7]);
-
   const handleScrollTo = (sectionId: string) => {
     scrollTo(sectionId, { offset: 0, duration: 1.2 });
   };
 
   return (
     <section
-      ref={sectionRef}
       id="hero"
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
@@ -55,10 +35,7 @@ export function Hero() {
           <source src="/videos/cargo-ship.webm" type="video/webm" />
         </video>
         {/* Dark overlay for better text readability */}
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/70"
-          style={{ opacity: overlayOpacity }}
-        />
+        <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/40 to-charcoal/70" />
         {/* Additional cream tint overlay */}
         <div className="absolute inset-0 bg-cream/30" />
       </div>
@@ -93,9 +70,6 @@ export function Hero() {
 
         {/* Company Name - Positioned on the upper edge of the boat */}
         <motion.div
-          style={{
-            opacity: leftOpacity,
-          }}
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
@@ -110,10 +84,6 @@ export function Hero() {
             <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-4 sm:gap-6 lg:gap-16 items-end">
               {/* LEFT - Tagline and Description */}
               <motion.div
-                style={{
-                  x: leftX,
-                  opacity: leftOpacity,
-                }}
                 initial={{ x: -100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
@@ -158,10 +128,6 @@ export function Hero() {
 
               {/* RIGHT - Stats Grid */}
               <motion.div
-                style={{
-                  x: rightX,
-                  opacity: rightOpacity,
-                }}
                 initial={{ x: 100, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.7, ease: 'easeOut' }}

@@ -1,5 +1,5 @@
-import { useState, useRef } from 'react';
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Send, CheckCircle2, Loader2, MessageSquare, User, Mail, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -30,31 +30,6 @@ interface FormData {
 }
 
 export function Contact() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
-
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  // Slide animations - content centered from 0.2 to 0.8 scroll progress
-  const leftX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [-60, -20, 0, 0, -20, -60]
-  );
-  const rightX = useTransform(
-    scrollYProgress,
-    [0, 0.1, 0.2, 0.8, 0.9, 1],
-    [60, 20, 0, 0, 20, 60]
-  );
-  const contentOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.08, 0.15, 0.85, 0.92, 1],
-    [0, 0.7, 1, 1, 0.7, 0]
-  );
-
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -115,7 +90,6 @@ export function Contact() {
 
   return (
     <section
-      ref={sectionRef}
       id="contact"
       className="relative py-24 lg:py-32 overflow-hidden bg-slate-50"
     >
@@ -125,9 +99,12 @@ export function Contact() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left: Info - Slides in from left */}
+          {/* Left: Info */}
           <motion.div
-            style={{ x: leftX, opacity: contentOpacity }}
+            initial={{ x: -40, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <span className="inline-block text-blue-600 text-sm font-semibold tracking-wider uppercase mb-4">
               Get In Touch
@@ -164,7 +141,8 @@ export function Contact() {
                   key={item.title}
                   className="flex items-start gap-4 p-4 rounded-xl bg-white border border-slate-100 shadow-sm"
                   initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ delay: 0.3 + index * 0.1 }}
                 >
                   <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center flex-shrink-0">
@@ -179,9 +157,12 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* Right: Form - Slides in from right */}
+          {/* Right: Form */}
           <motion.div
-            style={{ x: rightX, opacity: contentOpacity }}
+            initial={{ x: 40, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
           >
             <div className="bg-white rounded-2xl p-8 border border-slate-100 shadow-lg">
               <h3 className="text-xl font-bold text-slate-900 mb-6">
